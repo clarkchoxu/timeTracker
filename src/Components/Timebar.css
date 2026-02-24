@@ -1,0 +1,148 @@
+/* ============================================
+   TimeBar.css — 24-hour timeline bar
+   ============================================ */
+
+.timebar {
+  width: 100%;
+}
+
+.timebar__title {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+.timebar__container {
+  position: relative;
+}
+
+/* Hour label row */
+.timebar__hour-labels {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.timebar__hour-label {
+  width: calc(100% / 24);
+  font-size: 9px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  text-align: left;
+  user-select: none;
+}
+
+/* Main track */
+.timebar__track {
+  position: relative;
+  background-color: var(--surface-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+/* Vertical grid lines */
+.timebar__grid-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+/* Task block */
+.timebar__block {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 6px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.timebar__block:hover {
+  filter: brightness(1.15);
+  transform: scaleY(1.04);
+  z-index: 10;
+}
+
+.timebar__block-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 6px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-sans);
+  pointer-events: none;
+}
+
+/* Legend */
+.timebar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.timebar__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 10px 4px 8px;
+}
+
+.timebar__legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.timebar__legend-name {
+  color: var(--text-primary);
+  font-size: 0.8rem;
+}
+
+.timebar__delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+
+.timebar__delete-btn:hover {
+  color: var(--error);
+  background: rgba(255, 107, 107, 0.15);
+}
+
+/* Empty state */
+.timebar__empty {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 12px;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+}

@@ -1,0 +1,81 @@
+/* ============================================
+   Stopwatch.css — Stopwatch & TaskManager shared form styles
+   ============================================ */
+
+/* --- Stopwatch --- */
+.stopwatch__title,
+.task-manager__title {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  
+}
+
+.stopwatch__error,
+.task-manager__error {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 107, 107, 0.1);
+  border-left: 3px solid var(--error);
+  border-radius: 4px;
+        max-width: 400px;
+}
+
+.stopwatch__input-row {
+  margin-bottom: 20px;
+}
+
+.stopwatch__input,
+.task-manager__input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+        max-width: 400px;
+}
+
+.stopwatch__input:focus,
+.task-manager__input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.stopwatch__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stopwatch__display {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.stopwatch__started-at {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 20px;
+}
+
+.stopwatch__controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

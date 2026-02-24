@@ -1,0 +1,37 @@
+/* ============================================
+   TaskManager.css — Manual task entry form
+   ============================================ */
+
+.task-manager__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+}
+
+.task-manager__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  
+}
+
+.task-manager__error{
+      max-width: 400px;
+}
+.task-manager__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  
+}
+
+/* time input styling */
+.task-manager__input[type="time"] {
+  color-scheme: dark;
+max-width: 400px;
+  
+}
