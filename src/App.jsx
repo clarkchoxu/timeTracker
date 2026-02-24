@@ -80,6 +80,14 @@ function App() {
           alert(`⏰ Time to start: ${task.name}!`);
         }
       }
+       if (timeNow > task.endTime) {
+           alreadyAlarmed.current.forEach(key => {
+        if (key.startsWith(`${task.id}-`)) {
+          alreadyAlarmed.current.delete(key);
+          console.log("🗑️ Clearing alarms for past task:", task.name);
+        }
+      });
+    }
     });
   }, [currentTime, tasks]);
 
@@ -93,6 +101,12 @@ function App() {
 
   return (
     <div className="app">
+      <button onClick={async () => {
+  const permission = await Notification.requestPermission();
+  console.log("Permission result:", permission);
+}}>
+  Enable Notifications
+</button>
       <header className="app-header">
         <h1 className="app-title">Time Tracker</h1>
         <p className="app-subtitle">Track your day, block by block</p>
@@ -130,6 +144,8 @@ function App() {
         </section>
       </main>
     </div>
+
+    
   );
 }
 
