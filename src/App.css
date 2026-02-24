@@ -180,3 +180,88 @@ body {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================
+   NowPanel — Live Status Display
+   ============================================ */
+
+.now-panel {
+.now-panel {
+  display: flex; /* ADD THIS */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+}
+
+/* Current clock time */
+.now-panel__time {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+/* Active task name */
+.now-panel__task {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+/* Minutes remaining */
+.now-panel__remaining {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Idle state */
+.now-panel__idle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Next task preview */
+.now-panel__next {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  letter-spacing: 0.02em;
+}
+
+/* Optional: subtle glow when active */
+.now-panel__task {
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+
+.statistics-panel {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.statistics-title {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+
+.statistics-placeholder {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
