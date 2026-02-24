@@ -18,6 +18,44 @@ function Stopwatch({ onAddTask }) {
   const [error, setError] = useState("");
   const intervalRef = useRef(null);
 
+  // ✅ Restore state from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("stopwatch-state");
+    if (!saved) return;
+    const { taskName, startTimeISO } = JSON.parse(saved);
+
+    const savedStart = new Date(startTimeISO);
+    const elapsed = Math.floor((Date.now() - savedStart.getTime()) / 1000);
+
+    setTaskName(taskName);
+    setStartTime(savedStart);
+    setSeconds(elapsed);
+    setIsRunning(true);
+  }, []);
+
+  // ✅ Save state to localStorage whenever the stopwatch is running
+  useEffect(() => {
+    if (isRunning && startTime) {
+      localStorage.setItem("stopwatch-state", JSON.stringify({
+        taskName,
+        startTimeISO: startTime.toISOString(),
+      }));
+    } else {
+      localStorage.removeItem("stopwatch-state");
+    }
+  }, [isRunning, startTime, taskName]);
+
+  useEffect(() => {
+    if (isRunning) {
+      intervalRef.current = setInterval(() => {
+        setSeconds((prev) => prev + 1);
+      }, 1000);
+    } else {
+      clearInterval(intervalRef.current);
+    }
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning]);
+
   const formatElapsed = (s) => {
     const hrs = Math.floor(s / 3600).toString().padStart(2, "0");
     const mins = Math.floor((s % 3600) / 60).toString().padStart(2, "0");
@@ -30,17 +68,6 @@ function Stopwatch({ onAddTask }) {
     const mins = date.getMinutes().toString().padStart(2, "0");
     return `${hrs}:${mins}`;
   };
-
-  useEffect(() => {
-    if (isRunning) {
-      intervalRef.current = setInterval(() => {
-        setSeconds((prev) => prev + 1);
-      }, 1000);
-    } else {
-      clearInterval(intervalRef.current);
-    }
-    return () => clearInterval(intervalRef.current);
-  }, [isRunning]);
 
   const handleStart = () => {
     if (!taskName.trim()) {
