@@ -7,14 +7,22 @@ import Statistics from "./Components/statistics";
 import "./App.css";
 
 function App() {
-  const [tasks, setTasks] = useState(() => {
-    try {
-      const saved = localStorage.getItem("timetracker-tasks");
-      return saved ? JSON.parse(saved) : [];
-    } catch (e) {
-      return [];
-    }
-  });
+const [tasks, setTasks] = useState(() => {
+  try {
+    const saved = localStorage.getItem("timetracker-tasks");
+    if (!saved) return [];
+
+    const { date, tasks } = JSON.parse(saved);
+    const today = new Date().toDateString();
+
+    // If saved data is from a previous day, start fresh
+    if (date !== today) return [];
+
+    return tasks;
+  } catch (e) {
+    return [];
+  }
+});
 
   const [activeTab, setActiveTab] = useState("stopwatch");
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -45,9 +53,13 @@ function App() {
   }, []);
 
   // Save to localStorage whenever tasks change
-  useEffect(() => {
-    localStorage.setItem("timetracker-tasks", JSON.stringify(tasks));
-  }, [tasks]);
+ useEffect(() => {
+  localStorage.setItem("timetracker-tasks", JSON.stringify({
+    date: new Date().toDateString(),
+    tasks: tasks, 
+  }));
+}, [tasks]);
+
 
 const playAlarmSound = () => {
   const audio = new Audio(`${import.meta.env.BASE_URL}alarm.mp3`);
@@ -173,13 +185,14 @@ const triggerAlarm = (task) => {
     currentTime={currentTime} 
   />
 
-  <Statistics />
+<Statistics tasks={tasks} />
 </div>
     {/* FULL WIDTH TIMELINE */}
     <section className="app-section app-section--wide">
       <TimeBar 
         tasks={tasks} 
         onDeleteTask={handleDelete} 
+        deleteAllTasks={() => setTasks([])}
       />
     </section>
 

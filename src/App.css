@@ -185,16 +185,6 @@ body {
    NowPanel — Live Status Display
    ============================================ */
 
-.now-panel {
-.now-panel {
-  display: flex; /* ADD THIS */
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
-}
-}
 
 /* Current clock time */
 .now-panel__time {

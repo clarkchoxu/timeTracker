@@ -120,9 +120,9 @@ function Stopwatch({ onAddTask }) {
         />
       </div>
 
-      <div className="stopwatch__display">
-        {formatElapsed(seconds)}
-      </div>
+<div className={`stopwatch__display ${isRunning ? "stopwatch__display--running" : ""}`}>
+  {formatElapsed(seconds)}
+</div>
 
       {startTime && (
         <p className="stopwatch__started-at">

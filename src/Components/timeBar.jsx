@@ -1,6 +1,10 @@
 import "./timeBar.css";
+import { useState } from "react";
 
-function TimeBar({ tasks, onDeleteTask }) {
+function TimeBar({ tasks, onDeleteTask, deleteAllTasks }) {
+    const [showConfirm, setShowConfirm] = useState(false)
+
+
   const toMinutes = (timeStr) => {
     const [hours, mins] = timeStr.split(":").map(Number);
     return hours * 60 + mins;
@@ -93,6 +97,38 @@ function TimeBar({ tasks, onDeleteTask }) {
             );
           })}
         </div>
+
+             <button 
+        className="timebar__delete-all-btn" 
+        onClick={() => setShowConfirm(true)}
+      >
+          
+          Clear All Tasks
+        </button>
+
+         {showConfirm && (
+        <div className="confirm-overlay">
+          <div className="confirm-modal">
+            <h3 className="confirm-title">Clear All Tasks?</h3>
+            <p className="confirm-message">This will permanently delete all tasks from today.</p>
+            <div className="confirm-actions">
+              <button 
+                className="btn btn--reset" 
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </button>
+              <button 
+                className="btn btn--stop" 
+                onClick={() => { deleteAllTasks(); setShowConfirm(false); }}
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
         {/* Legend */}
         {tasks.length > 0 && (
