@@ -272,6 +272,11 @@ body {
 
   .app-main {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .app-section {
+    padding: 16px;
   }
 
   .app-section--wide {
