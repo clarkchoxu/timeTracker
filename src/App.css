@@ -255,3 +255,50 @@ body {
   color: var(--text-muted);
   font-style: italic;
 }
+
+
+@media (max-width: 768px) {
+  .app {
+    padding: 20px 16px;
+  }
+
+  .app-header {
+    margin-bottom: 24px;
+  }
+
+  .app-title {
+    font-size: 1.75rem;
+  }
+
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+
+  .app-section--wide {
+    grid-column: 1;
+  }
+
+  .stopwatch__display {
+    font-size: 2.5rem;
+  }
+
+  .stopwatch__controls {
+    flex-direction: column;
+  }
+
+  .stopwatch__controls .btn {
+    width: 100%;
+  }
+
+  .confirm-modal {
+    padding: 20px;
+  }
+
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+
+  .confirm-actions .btn {
+    width: 100%;
+  }
+}
